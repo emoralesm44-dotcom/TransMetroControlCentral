@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { authService } from '../servicios/authServicio';
+import { esRolValido } from '../config/rolesConfig';
 import './Login.css';
 
 export const Login = ({ onLoginSuccess }) => {
@@ -18,9 +19,16 @@ export const Login = ({ onLoginSuccess }) => {
 
     try {
       const data = await authService.login(formData);
+
+      if (!esRolValido(data?.usuario?.rol)) {
+        await authService.logout();
+        setError('Acceso denegado: tu rol no tiene permisos en esta aplicación.');
+        return;
+      }
+
       onLoginSuccess(data.usuario);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Error al iniciar sesión.');
     } finally {
       setCargando(false);
     }
