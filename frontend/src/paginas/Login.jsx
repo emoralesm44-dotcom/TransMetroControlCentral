@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import "./Login.css";
-import bgImage from "../public/Fondo.png";
+import React, { useState } from 'react';
+import { authService } from '../servicios/authServicio';
+import './Login.css';
 
 export const Login = ({ onLoginSuccess }) => {
   const [formData, setFormData] = useState({ nombre_usuario: '', contrasenia: '' });
@@ -17,19 +17,7 @@ export const Login = ({ onLoginSuccess }) => {
     setCargando(true);
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Error de acceso.');
-      }
-
+      const data = await authService.login(formData);
       onLoginSuccess(data.usuario);
     } catch (err) {
       setError(err.message);
@@ -39,12 +27,7 @@ export const Login = ({ onLoginSuccess }) => {
   };
 
   return (
-    <div 
-      className="login-overlay" 
-      style={{
-        backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.8)), url(${bgImage})`
-      }}
-    >
+    <div className="login-overlay">
       <div className="login-card">
         <div className="login-header">
           <h1 className="login-title">Transmetro</h1>
