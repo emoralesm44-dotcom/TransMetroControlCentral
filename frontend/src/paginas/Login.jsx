@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { authService } from '../servicios/authServicio';
 import { esRolValido } from '../config/rolesConfig';
+import fondoImg from '../public/Fondo.png';
 import './Login.css';
 
 export const Login = ({ onLoginSuccess }) => {
   const [formData, setFormData] = useState({ nombre_usuario: '', contrasenia: '' });
+  const [mostrarContrasenia, setMostrarContrasenia] = useState(false);
   const [error, setError] = useState('');
   const [cargando, setCargando] = useState(false);
 
@@ -35,7 +37,15 @@ export const Login = ({ onLoginSuccess }) => {
   };
 
   return (
-    <div className="login-overlay">
+    <div
+      className="login-overlay"
+      style={{
+        backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url(${fondoImg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       <div className="login-card">
         <div className="login-header">
           <h1 className="login-title">Transmetro</h1>
@@ -61,15 +71,29 @@ export const Login = ({ onLoginSuccess }) => {
 
           <div className="login-input-group">
             <label className="login-label">Contraseña</label>
-            <input
-              type="password"
-              name="contrasenia"
-              placeholder="••••••••"
-              value={formData.contrasenia}
-              onChange={handleChange}
-              required
-              className="login-input"
-            />
+            <div className="login-password-wrapper">
+              <input
+                type={mostrarContrasenia ? 'text' : 'password'}
+                name="contrasenia"
+                placeholder="••••••••"
+                value={formData.contrasenia}
+                onChange={handleChange}
+                required
+                className="login-input login-input-password"
+              />
+              <button
+                type="button"
+                onClick={() => setMostrarContrasenia(!mostrarContrasenia)}
+                className="login-toggle-password"
+                aria-label="Mostrar u ocultar contraseña"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                  {mostrarContrasenia && <line x1="2" y1="2" x2="22" y2="22" />}
+                </svg>
+              </button>
+            </div>
           </div>
 
           <button type="submit" disabled={cargando} className="login-button">

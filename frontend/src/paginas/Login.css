@@ -127,3 +127,33 @@ html, body {
   border-top: 1px solid #e2e8f0;
   padding-top: 16px;
 }
+
+.login-password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.login-input-password {
+  width: 100%;
+  padding-right: 42px;
+}
+
+.login-toggle-password {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+
+.login-toggle-password:hover {
+  color: #ffffff;
+}

@@ -16,14 +16,14 @@ const verificarAutenticacion = (req, res, next) => {
     next();
   } catch (error) {
     res.clearCookie('token');
-    return res.status(401).json({ error: 'Sesión expirada o token no válido.' });
+    return res.status(401).json({ error: 'Sesión expirada' });
   }
 };
 
 const requerirRol = (...rolesPermitidos) => {
   return (req, res, next) => {
     if (!req.usuario || !rolesPermitidos.includes(req.usuario.rol)) {
-      return res.status(403).json({ error: 'Acceso denegado: permisos insuficientes.' });
+      return res.status(403).json({ error: 'Acceso denegado , permisos insuficientes.' });
     }
     next();
   };
