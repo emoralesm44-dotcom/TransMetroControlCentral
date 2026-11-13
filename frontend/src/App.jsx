@@ -1,76 +1,81 @@
 import React, { useState, useEffect } from 'react';
-import { Login } from './paginas/Login';
-import { PanelPrincipal } from './paginas/PanelPrincipal';
 import { authService } from './servicios/authServicio';
-import { esRolValido } from './config/rolesConfig';
+import { Login } from './paginas/Login';
+import { DashboardLayout } from './componentes/DashboardLayaut';
+import { Municipalidades } from './paginas/Municipalidades';
+import { Personal } from './paginas/Personal';
 
 export function App() {
   const [usuario, setUsuario] = useState(null);
-  const [cargando, setCargando] = useState(true);
+  const [verificandoSesion, setVerificandoSesion] = useState(true);
+  const [moduloActivo, setModuloActivo] = useState('inicio');
 
   useEffect(() => {
     const comprobarSesion = async () => {
       try {
-        const datos = await authService.verificarSesion();
-        const perfil = datos.usuario || datos;
-
-        if (esRolValido(perfil?.rol)) {
-          setUsuario(perfil);
-        } else {
-          await authService.logout();
-          setUsuario(null);
+        const data = await authService.obtenerPerfil();
+        if (data?.usuario) {
+          setUsuario(data.usuario);
         }
       } catch {
         setUsuario(null);
       } finally {
-        setCargando(false);
+        setVerificandoSesion(false);
       }
     };
-
     comprobarSesion();
   }, []);
 
+  const handleLoginSuccess = (datosUsuario) => {
+    setUsuario(datosUsuario);
+    setModuloActivo('inicio');
+  };
+
   const handleLogout = async () => {
-    try {
-      await authService.logout();
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setUsuario(null);
+    await authService.logout();
+    setUsuario(null);
+    setModuloActivo('inicio');
+  };
+
+  const renderizarContenido = () => {
+    switch (moduloActivo) {
+      case 'municipalidades':
+        return <Municipalidades />;
+      case 'personal':
+        return <Personal />;
+      default:
+        return (
+          <div style={{ background: '#ffffff', padding: '24px', borderRadius: '4px', border: '1px solid #d1d5db' }}>
+            <h3 style={{ marginTop: 0 }}>Bienvenido, {usuario.nombre_completo}</h3>
+            <p style={{ color: '#4b5563', marginBottom: 0 }}>
+              Módulo seleccionado: <strong>{moduloActivo}</strong> — Rol activo: <strong>{usuario.rol}</strong>
+            </p>
+          </div>
+        );
     }
   };
 
-  if (cargando) {
+  if (verificandoSesion) {
     return (
-      <div style={{ padding: '20px', color: '#fff', backgroundColor: '#1e1e1e', minHeight: '100vh' }}>
-        Cargando...
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#f4f6f8', color: '#1f2937' }}>
+        Verificando sesión...
       </div>
     );
   }
 
   if (!usuario) {
-    return <Login onLoginSuccess={setUsuario} />;
+    return <Login onLoginSuccess={handleLoginSuccess} />;
   }
 
   return (
-    <div style={{ padding: '20px', color: '#fff', backgroundColor: '#1e1e1e', minHeight: '100vh' }}>
-      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-        <div>
-          <h1>Panel Central Transmetro</h1>
-          <p>Bienvenido, <strong>{usuario.nombre_completo}</strong> [{usuario.rol}]</p>
-        </div>
-        <button
-          onClick={handleLogout}
-          style={{ padding: '8px 16px', backgroundColor: '#e74c3c', color: '#fff', border: 'none', cursor: 'pointer' }}
-        >
-          Cerrar Sesión
-        </button>
-      </header>
-
-      <main>
-        <PanelPrincipal usuario={usuario} />
-      </main>
-    </div>
+    <DashboardLayout
+      usuario={usuario}
+      moduloActivo={moduloActivo}
+      onSeleccionarModulo={setModuloActivo}
+      onLogout={handleLogout}
+    >
+      {renderizarContenido()}
+    </DashboardLayout>
   );
 }
 

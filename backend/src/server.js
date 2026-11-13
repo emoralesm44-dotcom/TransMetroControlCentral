@@ -5,6 +5,8 @@ require('dotenv').config();
 
 const authRoutes = require('./capaPresentacion/rutas/authRoutes');
 const { aplicarHelmet } = require('./capaLogica/middlewares/seguridadMiddleware');
+const municipalidadRoutes = require('./capaPresentacion/rutas/municipalidadRutas');
+const empleadoRutas = require('./capaPresentacion/rutas/empleadoRutas');
 
 const app = express();
 
@@ -19,6 +21,11 @@ app.use(cors({
 }));
 
 app.use('/api/auth', authRoutes);
+app.use('/api/municipalidades', municipalidadRoutes);
+app.use('/api/empleados', empleadoRutas);
+
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

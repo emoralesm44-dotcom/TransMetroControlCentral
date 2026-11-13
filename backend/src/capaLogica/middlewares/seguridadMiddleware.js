@@ -3,7 +3,7 @@ const helmet = require('helmet');
 
 const loginRateLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 20,
+  max: 25,
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Demasiados intentos fallidos. Intente de nuevo en 15 minutos.' }

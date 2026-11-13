@@ -1,30 +1,38 @@
+export const ROLES_ETIQUETAS = {
+  ADMINISTRADOR: 'Administrador del Sistema',
+  SUPERVISOR: 'Supervisor Operativo',
+  PILOTO: 'Piloto de Unidad',
+  OPERADOR_ESTACION: 'Operador de Estación',
+};
+
 export const ROLES_MENU = {
   ADMINISTRADOR: [
-    { id: 'usuarios', titulo: 'Usuarios y roles' },
-    { id: 'personal', titulo: 'Registro de personal' },
+    { id: 'inicio', titulo: 'Panel General' },
     { id: 'municipalidades', titulo: 'Municipalidades' },
+    { id: 'personal', titulo: 'Registro de personal' },
+    { id: 'usuarios', titulo: 'Usuarios y roles' },
   ],
   SUPERVISOR: [
-    { id: 'lineas', titulo: 'Líneas y rutas' },
+    { id: 'inicio', titulo: 'Panel Operativo' },
     { id: 'estaciones', titulo: 'Estaciones y accesos' },
+    { id: 'lineas', titulo: 'Líneas y rutas' },
+    { id: 'distancias', titulo: 'Orden y distancias' },
     { id: 'guardias', titulo: 'Guardias' },
-    { id: 'buses', titulo: 'Buses y asignaciones' },
     { id: 'parqueos', titulo: 'Parqueos' },
-    { id: 'distancias', titulo: 'Distancias' },
+    { id: 'buses', titulo: 'Buses y asignaciones' },
     { id: 'reportes', titulo: 'Reportes' },
   ],
   PILOTO: [
+    { id: 'inicio', titulo: 'Mi Jornada' },
     { id: 'mi-bus', titulo: 'Consultar bus asignado' },
     { id: 'mi-ruta', titulo: 'Consultar línea y recorrido' },
     { id: 'mi-parqueo', titulo: 'Consultar parqueo' },
-    { id: 'alertas-piloto', titulo: 'Alertas y solicitudes de apoyo' },
   ],
   OPERADOR_ESTACION: [
-    { id: 'control-estacion', titulo: 'Control de mi estación' },
-    { id: 'pasajeros', titulo: 'Registro de pasajeros' },
-    { id: 'horarios', titulo: 'Llegadas y salidas' },
-    { id: 'visitas-buses', titulo: 'Visitas de buses' },
-    { id: 'alertas-estacion', titulo: 'Visualización de alertas' },
+    { id: 'inicio', titulo: 'Mi Estación' },
+    { id: 'llegadas', titulo: 'Registrar llegada' },
+    { id: 'salidas', titulo: 'Registrar salida' },
+    { id: 'alertas-estacion', titulo: 'Alertas de estación' },
   ],
 };
 
