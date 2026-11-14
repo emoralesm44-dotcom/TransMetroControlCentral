@@ -4,6 +4,12 @@ import { Login } from './paginas/Login';
 import { DashboardLayout } from './componentes/DashboardLayaut';
 import { Municipalidades } from './paginas/Municipalidades';
 import { Personal } from './paginas/Personal';
+import { Usuarios } from './paginas/Usuarios';
+import { Lineas } from './paginas/Lineas';
+import { Estaciones } from './paginas/Estaciones';
+
+
+
 
 export function App() {
   const [usuario, setUsuario] = useState(null);
@@ -43,6 +49,12 @@ export function App() {
         return <Municipalidades />;
       case 'personal':
         return <Personal />;
+      case 'usuarios':
+        return <Usuarios />;
+      case 'lineas':
+        return <Lineas />;
+      case 'estaciones':
+        return <Estaciones />;
       default:
         return (
           <div style={{ background: '#ffffff', padding: '24px', borderRadius: '4px', border: '1px solid #d1d5db' }}>

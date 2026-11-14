@@ -7,6 +7,10 @@ const authRoutes = require('./capaPresentacion/rutas/authRoutes');
 const { aplicarHelmet } = require('./capaLogica/middlewares/seguridadMiddleware');
 const municipalidadRoutes = require('./capaPresentacion/rutas/municipalidadRutas');
 const empleadoRutas = require('./capaPresentacion/rutas/empleadoRutas');
+const usuarioRutas = require('./capaPresentacion/rutas/usuariosRutas');
+const lineaRutas = require('./capaPresentacion/rutas/lineasRutas');
+const estacionRutas = require('./capaPresentacion/rutas/estacionRutas');
+
 
 const app = express();
 
@@ -23,6 +27,11 @@ app.use(cors({
 app.use('/api/auth', authRoutes);
 app.use('/api/municipalidades', municipalidadRoutes);
 app.use('/api/empleados', empleadoRutas);
+app.use('/api/usuarios', usuarioRutas);
+app.use('/api/lineas', lineaRutas);
+app.use('/api/estaciones', estacionRutas);
+
+
 
 
 

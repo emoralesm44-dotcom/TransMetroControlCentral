@@ -1,4 +1,4 @@
-const empleadoDatos = require('../../capaDatos/modelos/empleadosDatosModel');
+const empleadoDatos = require('../../capaDatos/modelos/empleadosDatosModelo');
 
 const TIPOS_VALIDOS = ['ADMINISTRADOR', 'SUPERVISOR', 'PILOTO', 'OPERADOR_ESTACION', 'GUARDIA'];
 
