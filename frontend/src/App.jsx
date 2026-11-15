@@ -7,6 +7,11 @@ import { Personal } from './paginas/Personal';
 import { Usuarios } from './paginas/Usuarios';
 import { Lineas } from './paginas/Lineas';
 import { Estaciones } from './paginas/Estaciones';
+import { Guardias } from './paginas/Guardias';
+import { Parqueos } from './paginas/Parqueos';
+import { Buses } from './paginas/Buses';
+
+
 
 
 
@@ -55,6 +60,12 @@ export function App() {
         return <Lineas />;
       case 'estaciones':
         return <Estaciones />;
+      case 'guardias':
+        return <Guardias />;
+      case 'parqueos':
+        return <Parqueos />;
+      case 'buses':
+        return <Buses />;
       default:
         return (
           <div style={{ background: '#ffffff', padding: '24px', borderRadius: '4px', border: '1px solid #d1d5db' }}>

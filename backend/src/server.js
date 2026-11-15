@@ -10,6 +10,10 @@ const empleadoRutas = require('./capaPresentacion/rutas/empleadoRutas');
 const usuarioRutas = require('./capaPresentacion/rutas/usuariosRutas');
 const lineaRutas = require('./capaPresentacion/rutas/lineasRutas');
 const estacionRutas = require('./capaPresentacion/rutas/estacionRutas');
+const guardiaRutas = require('./capaPresentacion/rutas/guardiaRutas');
+const parqueoRutas = require('./capaPresentacion/rutas/parqueoRutas');
+const busRutas = require('./capaPresentacion/rutas/busesRutas');
+
 
 
 const app = express();
@@ -30,7 +34,9 @@ app.use('/api/empleados', empleadoRutas);
 app.use('/api/usuarios', usuarioRutas);
 app.use('/api/lineas', lineaRutas);
 app.use('/api/estaciones', estacionRutas);
-
+app.use('/api/guardias', guardiaRutas);
+app.use('/api/parqueos', parqueoRutas);
+app.use('/api/buses', busRutas);
 
 
 
