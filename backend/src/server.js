@@ -13,6 +13,8 @@ const estacionRutas = require('./capaPresentacion/rutas/estacionRutas');
 const guardiaRutas = require('./capaPresentacion/rutas/guardiaRutas');
 const parqueoRutas = require('./capaPresentacion/rutas/parqueoRutas');
 const busRutas = require('./capaPresentacion/rutas/busesRutas');
+const lineaEstacionRutas = require('./capaPresentacion/rutas/lineaEstacionRutas');
+const operadorEstacionRutas = require('./capaPresentacion/rutas/operadorEstacionRutas');
 
 
 
@@ -37,6 +39,8 @@ app.use('/api/estaciones', estacionRutas);
 app.use('/api/guardias', guardiaRutas);
 app.use('/api/parqueos', parqueoRutas);
 app.use('/api/buses', busRutas);
+app.use('/api/linea-estaciones', lineaEstacionRutas);
+app.use('/api/operador-estacion', operadorEstacionRutas);
 
 
 

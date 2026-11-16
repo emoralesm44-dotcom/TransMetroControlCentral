@@ -15,12 +15,14 @@ export const ROLES_MENU = {
   SUPERVISOR: [
     { id: 'inicio', titulo: 'Panel Operativo' },
     { id: 'estaciones', titulo: 'Estaciones y accesos' },
-    { id: 'lineas', titulo: 'Líneas y rutas' },
-    { id: 'distancias', titulo: 'Orden y distancias' },
+    { id: 'operadores-estacion', titulo: 'Operadores de Estación' },
     { id: 'guardias', titulo: 'Guardias' },
+    { id: 'lineas', titulo: 'Líneas y rutas' },
+    { id: 'orden-distancias', titulo: 'Orden y distancias' },
     { id: 'parqueos', titulo: 'Parqueos' },
     { id: 'buses', titulo: 'Buses y asignaciones' },
     { id: 'reportes', titulo: 'Reportes' },
+  
   ],
   PILOTO: [
     { id: 'inicio', titulo: 'Mi Jornada' },

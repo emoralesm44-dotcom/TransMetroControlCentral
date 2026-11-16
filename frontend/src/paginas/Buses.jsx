@@ -86,9 +86,41 @@ export const Buses = () => {
     }
   };
 
+  const validarRestricciones = () => {
+    if (formData.id_parqueo) {
+      const parqueoSeleccionado = parqueos.find((p) => String(p.id_parqueo) === String(formData.id_parqueo));
+      if (parqueoSeleccionado) {
+        const busesEnParqueo = buses.filter(
+          (b) => String(b.id_parqueo) === String(formData.id_parqueo) && b.id_bus !== editandoId && b.activo
+        );
+        if (busesEnParqueo.length >= parqueoSeleccionado.capacidad_unidades) {
+          setError(`El parqueo ${parqueoSeleccionado.nombre_parqueo} ha superado su capacidad máxima de ${parqueoSeleccionado.capacidad_unidades} unidades.`);
+          return false;
+        }
+      }
+    }
+
+    if (formData.id_linea) {
+      const lineaSeleccionada = lineas.find((l) => String(l.id_linea) === String(formData.id_linea));
+      if (lineaSeleccionada) {
+        const cantidadEstaciones = lineaSeleccionada.total_estaciones || lineaSeleccionada.cantidad_estaciones || 2; 
+        const maxBusesPermitidos = cantidadEstaciones * 2;
+        const busesEnLinea = buses.filter(
+          (b) => String(b.id_linea) === String(formData.id_linea) && b.id_bus !== editandoId && b.activo
+        );
+        if (busesEnLinea.length >= maxBusesPermitidos) {
+          setError(`La línea seleccionada tiene ${cantidadEstaciones} estaciones, por lo que permite un máximo de ${maxBusesPermitidos} buses asignados.`);
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+
   const handleGuardar = async (e) => {
     e.preventDefault();
     setError('');
+    if (!validarRestricciones()) return;
     try {
       if (editandoId) {
         await busServicio.actualizar(editandoId, formData);
@@ -250,7 +282,7 @@ export const Buses = () => {
               </div>
 
               <div className="form-grupo">
-                <label>Línea Asignada (Opcional — máx. 1 línea por bus)</label>
+                <label>Línea Asignada (Opcional — máx. el doble de estaciones)</label>
                 <select
                   value={formData.id_linea}
                   onChange={(e) => setFormData({ ...formData, id_linea: e.target.value })}

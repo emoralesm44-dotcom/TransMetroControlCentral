@@ -76,16 +76,26 @@ export const Estaciones = () => {
       if (editandoId) {
         await estacionServicio.actualizar(editandoId, formData);
       } else {
-        const res = await estacionServicio.crear({ ...formData, cantidad_accesos: 0 });
+        const accesosValidos = accesos.filter((a) => a.nombre_acceso.trim());
+        if (accesosValidos.length === 0) {
+          setError('Debe agregar al menos un acceso para la estación.');
+          return;
+        }
+        const res = await estacionServicio.crear({ ...formData, cantidad_accesos: 1 });
         const idCreada = res.estacion?.id_estacion;
         if (idCreada) {
-          for (const acc of accesos) {
-            if (acc.nombre_acceso.trim()) {
-              await estacionServicio.crearAcceso(idCreada, {
-                nombre_acceso: acc.nombre_acceso.trim(),
-                descripcion: acc.descripcion?.trim() || '',
-              });
-            }
+          const dataAcc = await estacionServicio.listarAccesos(idCreada);
+          if (dataAcc.accesos?.[0]) {
+            await estacionServicio.actualizarAcceso(dataAcc.accesos[0].id_acceso, {
+              nombre_acceso: accesosValidos[0].nombre_acceso.trim(),
+              descripcion: accesosValidos[0].descripcion?.trim() || '',
+            });
+          }
+          for (let i = 1; i < accesosValidos.length; i++) {
+            await estacionServicio.crearAcceso(idCreada, {
+              nombre_acceso: accesosValidos[i].nombre_acceso.trim(),
+              descripcion: accesosValidos[i].descripcion?.trim() || '',
+            });
           }
         }
       }

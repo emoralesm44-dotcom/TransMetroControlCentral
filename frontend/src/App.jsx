@@ -10,8 +10,8 @@ import { Estaciones } from './paginas/Estaciones';
 import { Guardias } from './paginas/Guardias';
 import { Parqueos } from './paginas/Parqueos';
 import { Buses } from './paginas/Buses';
-
-
+import { OrdenDistancias } from './paginas/OrdenDistancias';
+import { OperadoresEstacion } from './paginas/OperadorEstacion';
 
 
 
@@ -66,6 +66,10 @@ export function App() {
         return <Parqueos />;
       case 'buses':
         return <Buses />;
+      case 'orden-distancias':
+        return <OrdenDistancias />;
+      case 'operadores-estacion':
+  return <OperadoresEstacion />;
       default:
         return (
           <div style={{ background: '#ffffff', padding: '24px', borderRadius: '4px', border: '1px solid #d1d5db' }}>

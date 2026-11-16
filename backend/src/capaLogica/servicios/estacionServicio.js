@@ -7,7 +7,6 @@ const obtenerTodas = async () => {
 const registrar = async (datos) => {
   const nombre_estacion = datos.nombre_estacion?.trim();
   const id_municipalidad = Number(datos.id_municipalidad);
-  const cantidad_accesos = Number(datos.cantidad_accesos ?? 1);
 
   if (!nombre_estacion) {
     throw new Error('El nombre de la estación es obligatorio.');
@@ -15,6 +14,46 @@ const registrar = async (datos) => {
   if (!id_municipalidad) {
     throw new Error('Debe seleccionar una municipalidad.');
   }
+
+  if (Array.isArray(datos.accesos)) {
+    const accesosLimpios = datos.accesos
+      .filter((a) => a.nombre_acceso && a.nombre_acceso.trim())
+      .map((a) => ({
+        nombre_acceso: a.nombre_acceso.trim(),
+        descripcion: a.descripcion?.trim() || null,
+      }));
+
+    if (accesosLimpios.length < 1 || accesosLimpios.length > 20) {
+      throw new Error('Debe agregar entre 1 y 20 accesos para la estación.');
+    }
+
+    const estacion = await estacionDatos.crearEstacionConAccesos({
+      nombre_estacion,
+      id_municipalidad,
+      cantidad_accesos: 1,
+      activo: datos.activo !== undefined ? Boolean(datos.activo) : true,
+    });
+
+    const creados = await estacionDatos.listarAccesosPorEstacion(estacion.id_estacion);
+    if (creados[0]) {
+      await estacionDatos.actualizarAcceso(creados[0].id_acceso, {
+        nombre_acceso: accesosLimpios[0].nombre_acceso,
+        descripcion: accesosLimpios[0].descripcion,
+      });
+    }
+
+    for (let i = 1; i < accesosLimpios.length; i++) {
+      await estacionDatos.crearAcceso({
+        id_estacion: estacion.id_estacion,
+        nombre_acceso: accesosLimpios[i].nombre_acceso,
+        descripcion: accesosLimpios[i].descripcion,
+      });
+    }
+
+    return estacion;
+  }
+
+  const cantidad_accesos = Number(datos.cantidad_accesos ?? 1);
   if (Number.isNaN(cantidad_accesos) || cantidad_accesos < 1 || cantidad_accesos > 20) {
     throw new Error('La cantidad inicial de accesos debe estar entre 1 y 20.');
   }
