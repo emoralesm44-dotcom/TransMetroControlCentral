@@ -1,0 +1,246 @@
+
+.reportes {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+}
+
+.reportes-encabezado,
+.reportes-herramientas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.reportes-encabezado h2,
+.reportes-herramientas h3 {
+  margin: 0;
+  color: #1f2937;
+}
+
+.reportes-encabezado p,
+.reportes-titulo-pdf p {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.reportes-btn-pdf {
+  padding: 11px 18px;
+  border: none;
+  border-radius: 7px;
+  background: #1d4ed8;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.reportes-btn-pdf:hover {
+  background: #1e40af;
+}
+
+.reportes-btn-pdf:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.reportes-catalogo {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.reportes-tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+  min-height: 135px;
+  padding: 17px;
+  text-align: left;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.reportes-tarjeta:hover {
+  border-color: #93c5fd;
+  transform: translateY(-2px);
+}
+
+.reportes-tarjeta.activa {
+  border: 2px solid #2563eb;
+  background: #eff6ff;
+}
+
+.reportes-icono {
+  font-size: 25px;
+}
+
+.reportes-titulo {
+  color: #1f2937;
+  font-weight: 700;
+}
+
+.reportes-descripcion {
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.reportes-contenido {
+  padding: 20px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  min-width: 0;
+}
+
+.reportes-titulo-pdf {
+  display: none;
+}
+
+.reportes-herramientas {
+  margin-bottom: 18px;
+}
+
+.reportes-herramientas span {
+  display: block;
+  margin-top: 5px;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.reportes-herramientas input {
+  width: 260px;
+  max-width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  outline: none;
+}
+
+.reportes-herramientas input:focus {
+  border-color: #2563eb;
+}
+
+.reportes-tabla-contenedor {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.reportes-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.reportes-tabla th {
+  padding: 13px 12px;
+  text-align: left;
+  white-space: nowrap;
+  background: #f3f4f6;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.reportes-tabla td {
+  padding: 12px;
+  color: #4b5563;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.reportes-tabla tbody tr:hover {
+  background: #f9fafb;
+}
+
+.reportes-vacio {
+  padding: 25px !important;
+  text-align: center;
+  color: #6b7280 !important;
+}
+
+.reportes-error {
+  padding: 12px;
+  margin-bottom: 15px;
+  color: #b91c1c;
+  background: #fee2e2;
+  border-radius: 7px;
+}
+
+@media (max-width: 900px) {
+  .reportes-catalogo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 500px) {
+  .reportes-catalogo {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Configuración de impresión PDF */
+@media print {
+  @page {
+    size: landscape;
+    margin: 12mm;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #reportes-pdf,
+  #reportes-pdf * {
+    visibility: visible;
+  }
+
+  #reportes-pdf {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    border: none;
+  }
+
+  .reportes-titulo-pdf {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .reportes-titulo-pdf h2 {
+    color: #111827;
+  }
+
+  .reportes-herramientas input {
+    display: none;
+  }
+
+  .reportes-tabla {
+    font-size: 10px;
+  }
+
+  .reportes-tabla th,
+  .reportes-tabla td {
+    padding: 8px;
+    color: black;
+    border: 1px solid #d1d5db;
+  }
+
+  .reportes-tabla th {
+    background: #e5e7eb !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .reportes-tabla tr {
+    break-inside: avoid;
+  }
+}

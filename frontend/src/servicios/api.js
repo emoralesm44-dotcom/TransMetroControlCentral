@@ -19,7 +19,7 @@ export const clienteApi = async (endpoint, opciones = {}) => {
   const data = await respuesta.json();
 
   if (!respuesta.ok) {
-    throw new Error(data.error || 'Error al procesar la solicitud.');
+    throw new Error(data.mensaje || 'Error al procesar la solicitud.');
   }
 
   return data;

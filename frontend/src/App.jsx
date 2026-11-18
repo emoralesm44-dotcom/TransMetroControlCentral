@@ -12,9 +12,15 @@ import { Parqueos } from './paginas/Parqueos';
 import { Buses } from './paginas/Buses';
 import { OrdenDistancias } from './paginas/OrdenDistancias';
 import { OperadoresEstacion } from './paginas/OperadorEstacion';
+import { Reportes } from './paginas/Reportes';
+
+import { MiEstacion } from './paginas/Operador/MiEstacion';
+
+import { AlertasEstacion } from './paginas/Operador/Alertas';
 
 
 
+import { ControlLlegadaSalida } from './paginas/Operador/Control';
 
 export function App() {
   const [usuario, setUsuario] = useState(null);
@@ -69,7 +75,16 @@ export function App() {
       case 'orden-distancias':
         return <OrdenDistancias />;
       case 'operadores-estacion':
-  return <OperadoresEstacion />;
+        return <OperadoresEstacion />;
+      case 'reportes':
+         return <Reportes />;
+         case 'mi-estacion':
+        return <MiEstacion />;
+     
+      case 'alertas-estacion':
+        return <AlertasEstacion />;
+       case 'llegada-salida':
+  return <ControlLlegadaSalida />;
       default:
         return (
           <div style={{ background: '#ffffff', padding: '24px', borderRadius: '4px', border: '1px solid #d1d5db' }}>

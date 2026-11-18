@@ -31,10 +31,9 @@ export const ROLES_MENU = {
     { id: 'mi-parqueo', titulo: 'Consultar parqueo' },
   ],
   OPERADOR_ESTACION: [
-    { id: 'inicio', titulo: 'Mi Estación' },
-    { id: 'llegadas', titulo: 'Registrar llegada' },
-    { id: 'salidas', titulo: 'Registrar salida' },
-    { id: 'alertas-estacion', titulo: 'Alertas de estación' },
+    { id: 'mi-estacion', titulo: 'Mi Estación' },
+    { id: 'alertas-estacion', titulo: 'Alertas' },
+    { id: 'llegada-salida', titulo: 'Control' },
   ],
 };
 
