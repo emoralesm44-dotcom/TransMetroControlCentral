@@ -80,7 +80,6 @@ export function App() {
          return <Reportes />;
          case 'mi-estacion':
         return <MiEstacion />;
-     
       case 'alertas-estacion':
         return <AlertasEstacion />;
        case 'llegada-salida':
