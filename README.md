@@ -85,3 +85,7 @@ Antes de iniciar el proyecto, necesita tener instalado:
 - El operador de estación necesita tener una estación asignada.
 - El backend y PostgreSQL deben estar disponibles para que el frontend pueda consultar y guardar información.
 
+## Autor
+Edwin Javier Morales Martinez
+4490-21-2946
+Examen Privado (Recuperacion) / Análisis y Diseño de Sistemas
