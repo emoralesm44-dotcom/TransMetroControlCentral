@@ -1,7 +1,10 @@
+// Importación de dependencias principales y configuración de variables de entorno
+// Y middlewares de seguridad y  de rutas 
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
+
 
 const authRoutes = require('./capaPresentacion/rutas/authRoutes');
 const { aplicarHelmet } = require('./capaLogica/middlewares/seguridadMiddleware');
@@ -17,26 +20,23 @@ const lineaEstacionRutas = require('./capaPresentacion/rutas/lineaEstacionRutas'
 const operadorEstacionRutas = require('./capaPresentacion/rutas/operadorEstacionRutas');
 const reporteRutas = require('./capaPresentacion/rutas/reporteRutas');
 const terminalOperadorRutas = require('./capaPresentacion/rutas/terminalOperadorRutas');
-
-
-
-
-
-
-
+const dashboardRutas = require('./capaPresentacion/rutas/dashboardRutas');
 
 const app = express();
 
+// Configuración de seguridad, cookies y límite de tamaño en peticiones 
 app.disable('x-powered-by');
 app.use(aplicarHelmet);
 app.use(cookieParser());
 app.use(express.json({ limit: '10kb' }));
 
+// Configuración de CORS para permitir peticiones del frontend con credenciales
 app.use(cors({
   origin: process.env.CLIENT_URL || 'http://localhost:5173',
   credentials: true
 }));
 
+// Definición de endpoints principales de la API
 app.use('/api/auth', authRoutes);
 app.use('/api/municipalidades', municipalidadRoutes);
 app.use('/api/empleados', empleadoRutas);
@@ -50,9 +50,9 @@ app.use('/api/linea-estaciones', lineaEstacionRutas);
 app.use('/api/operador-estacion', operadorEstacionRutas);
 app.use('/api/reportes', reporteRutas);
 app.use('/api/terminal-operador', terminalOperadorRutas);
+app.use('/api/dashboard', dashboardRutas);
 
-
-
+// Inicialización del servidor en el puerto 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor API seguro de Transmetro activo en puerto ${PORT}`);

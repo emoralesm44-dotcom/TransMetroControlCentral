@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { busServicio } from '../servicios/busesServicio';
-import { lineaServicio } from '../servicios/lineaServicio';
-import { parqueoServicio } from '../servicios/parqueoServicio';
-import './ModuloAdmin.css';
+import { busServicio } from '../../servicios/busesServicio';
+import { lineaServicio } from '../../servicios/lineaServicio';
+import { parqueoServicio } from '../../servicios/parqueoServicio';
+import '../ModuloAdmin.css';
 
 export const Buses = () => {
   const [buses, setBuses] = useState([]);

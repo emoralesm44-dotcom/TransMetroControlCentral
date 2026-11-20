@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { lineaServicio } from '../servicios/lineaServicio';
-import { lineaEstacionServicio } from '../servicios/lineaEstacioneServicio';
-import './ModuloAdmin.css';
+import { lineaServicio } from '../../servicios/lineaServicio';
+import { lineaEstacionServicio } from '../../servicios/lineaEstacioneServicio';
+import '../ModuloAdmin.css';
 
 export const OrdenDistancias = () => {
   const [lineas, setLineas] = useState([]);

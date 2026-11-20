@@ -11,6 +11,13 @@ const usuarioModelo = {
     `;
     const result = await pool.query(query, [nombreUsuario]);
     return result.rows[0] || null;
+  },
+
+  actualizarUltimoAcceso: async (idUsuario) => {
+    await pool.query(
+      'UPDATE usuarios SET ultimo_acceso = NOW() WHERE id_usuario = $1;',
+      [idUsuario]
+    );
   }
 };
 

@@ -1,6 +1,6 @@
 
-import CRUD from '../componentes/CRUD';
-import { municipalidadServicio } from '../servicios/municipalidadServicios';
+import CRUD from '../../componentes/CRUD';
+import { municipalidadServicio } from '../../servicios/municipalidadServicios';
 
 export const Municipalidades = () => {
   return (

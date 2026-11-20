@@ -1,10 +1,11 @@
+// Nombres  para mostrar en la interfaz según el rol del usuario
 export const ROLES_ETIQUETAS = {
   ADMINISTRADOR: 'Administrador del Sistema',
   SUPERVISOR: 'Supervisor Operativo',
-  PILOTO: 'Piloto de Unidad',
   OPERADOR_ESTACION: 'Operador de Estación',
 };
 
+// Opciones de navegación y módulos disponibles para cada rol
 export const ROLES_MENU = {
   ADMINISTRADOR: [
     { id: 'inicio', titulo: 'Panel General' },
@@ -22,13 +23,6 @@ export const ROLES_MENU = {
     { id: 'parqueos', titulo: 'Parqueos' },
     { id: 'buses', titulo: 'Buses y asignaciones' },
     { id: 'reportes', titulo: 'Reportes' },
-  
-  ],
-  PILOTO: [
-    { id: 'inicio', titulo: 'Mi Jornada' },
-    { id: 'mi-bus', titulo: 'Consultar bus asignado' },
-    { id: 'mi-ruta', titulo: 'Consultar línea y recorrido' },
-    { id: 'mi-parqueo', titulo: 'Consultar parqueo' },
   ],
   OPERADOR_ESTACION: [
     { id: 'mi-estacion', titulo: 'Mi Estación' },
@@ -37,6 +31,7 @@ export const ROLES_MENU = {
   ],
 };
 
+// Normaliza el texto del rol y verifica si existe dentro de la configuración permitida
 export const esRolValido = (rol) => {
   if (!rol) return false;
   return Object.hasOwn(ROLES_MENU, rol.toUpperCase().replace(/\s+/g, '_'));

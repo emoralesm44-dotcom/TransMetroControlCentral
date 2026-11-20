@@ -22,8 +22,11 @@ const validarDatos = async (datos, idBusExcluir = null) => {
   if (!placa) {
     throw new Error('La placa del bus es obligatoria.');
   }
-  if (Number.isNaN(capacidad_maxima) || capacidad_maxima < 1) {
-    throw new Error('La capacidad máxima de pasajeros debe ser mayor o igual a 1.');
+  if (!Number.isInteger(capacidad_maxima) || capacidad_maxima < 1) {
+    throw new Error('La capacidad máxima de pasajeros debe ser un número entero mayor o igual a 1.');
+  }
+  if (!Number.isInteger(id_parqueo) || id_parqueo < 1) {
+    throw new Error('Debe seleccionar un parqueo válido para el bus.');
   }
 
   if (id_piloto) {

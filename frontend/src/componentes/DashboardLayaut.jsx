@@ -72,7 +72,8 @@ export const DashboardLayout = ({
               type="button"
               className="header-menu-btn"
               onClick={() => setSidebarAbierto(!sidebarAbierto)}
-              aria-label="Abrir menú"
+              aria-label={sidebarAbierto ? 'Cerrar menú' : 'Abrir menú'}
+              aria-expanded={sidebarAbierto}
             >
               ☰
             </button>

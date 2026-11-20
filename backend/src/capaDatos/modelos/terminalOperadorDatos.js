@@ -82,7 +82,7 @@ const buscarBus = async (idBus) => {
 
 const guardarLlegada = async (d) => {
   const { rows } = await pool.query(`
-    INSERT INTO public.recorridos_bus (id_estacion, id_linea, id_bus, pasajeros, hora_llegada, observacion_llegada)
+    INSERT INTO public.recorridos_bus (id_estacion, id_linea, id_bus, pasajeros, hora_llegada, observaciones)
     VALUES ($1, $2, $3, $4, $5, $6) RETURNING *
   `, [d.id_estacion, d.id_linea, d.id_bus, d.pasajeros, d.hora_llegada, d.observacion || null]);
   return rows[0];
@@ -98,7 +98,9 @@ const guardarAlerta = async (d) => {
 const guardarSalida = async (idRecorrido, idEstacion, horaSalida, observacion) => {
   const { rows } = await pool.query(`
     UPDATE public.recorridos_bus
-    SET hora_salida = $1, observacion_salida = $2, estado = 'COMPLETADO'
+    SET hora_salida = $1,
+        observaciones = CONCAT_WS(E'\\n', NULLIF(BTRIM(observaciones), ''), NULLIF(BTRIM($2), '')),
+        estado = 'COMPLETADO'
     WHERE id_recorrido = $3 AND id_estacion = $4 AND hora_salida IS NULL RETURNING *
   `, [horaSalida, observacion || null, idRecorrido, idEstacion]);
   return rows[0];

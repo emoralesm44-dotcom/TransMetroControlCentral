@@ -10,7 +10,7 @@ router.post('/', requerirRol('ADMINISTRADOR', 'SUPERVISOR'), controlador.crear);
 router.put('/:id', requerirRol('ADMINISTRADOR', 'SUPERVISOR'), controlador.actualizar);
 router.patch('/:id/estado', requerirRol('ADMINISTRADOR', 'SUPERVISOR'), controlador.actualizarEstado);
 
-// Accesos exclusivos de cada estación
+
 router.get('/:id/accesos', controlador.listarAccesos);
 router.post('/:id/accesos', requerirRol('ADMINISTRADOR', 'SUPERVISOR'), controlador.crearAcceso);
 router.put('/accesos/:idAcceso', requerirRol('ADMINISTRADOR', 'SUPERVISOR'), controlador.actualizarAcceso);

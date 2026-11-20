@@ -1,19 +1,23 @@
+
 import React, { useState } from 'react';
 import { authService } from '../servicios/authServicio';
 import { esRolValido } from '../config/rolesConfig';
 import fondoImg from '../public/Fondo.png';
 import './Login.css';
 
+// Componente de inicio de sesión del sistema Transmetro
 export const Login = ({ onLoginSuccess }) => {
   const [formData, setFormData] = useState({ nombre_usuario: '', contrasenia: '' });
   const [mostrarContrasenia, setMostrarContrasenia] = useState(false);
   const [error, setError] = useState('');
   const [cargando, setCargando] = useState(false);
 
+  // Actualiza el estado del formulario conforme el usuario escribe
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Envía las credenciales al backend, valida el rol autorizado y notifica éxito
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -36,6 +40,7 @@ export const Login = ({ onLoginSuccess }) => {
     }
   };
 
+  // Renderiza la tarjeta de login con fondo, formulario, botón para ver contraseña y mensajes de error
   return (
     <div
       className="login-overlay"

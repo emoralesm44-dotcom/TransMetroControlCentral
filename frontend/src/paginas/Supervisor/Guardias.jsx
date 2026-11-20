@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { guardiaServicio } from '../servicios/guardiaServicio';
-import './ModuloAdmin.css';
+import { guardiaServicio } from '../../servicios/guardiaServicio';
+import '../ModuloAdmin.css';
 
 export const Guardias = () => {
   const [asignaciones, setAsignaciones] = useState([]);

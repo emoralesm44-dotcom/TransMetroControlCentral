@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { reporteServicio } from '../servicios/reporteServicio';
+import { reporteServicio } from '../../servicios/reporteServicio';
 import { MdTrain, MdAltRoute, MdLocalParking } from 'react-icons/md';
 import './Reportes.css';
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { estacionServicio } from '../servicios/estacionServicio';
-import { municipalidadServicio } from '../servicios/municipalidadServicios';
-import './ModuloAdmin.css';
+import { estacionServicio } from '../../servicios/estacionServicio';
+import { municipalidadServicio } from '../../servicios/municipalidadServicios';
+import '../ModuloAdmin.css';
 
 export const Estaciones = () => {
   const [estaciones, setEstaciones] = useState([]);

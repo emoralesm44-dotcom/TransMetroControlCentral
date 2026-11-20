@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import CRUD from '../componentes/CRUD';
-import { lineaServicio } from '../servicios/lineaServicio';
-import { municipalidadServicio } from '../servicios/municipalidadServicios';
+import CRUD from '../../componentes/CRUD';
+import { lineaServicio } from '../../servicios/lineaServicio';
+import { municipalidadServicio } from '../../servicios/municipalidadServicios';
 
 export const Lineas = () => {
   const [municipalidades, setMunicipalidades] = useState([]);

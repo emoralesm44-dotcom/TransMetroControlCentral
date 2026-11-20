@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const usuarioDatos = require('../../capaDatos/modelos/usuariosDatosModelo');
 const empleadoDatos = require('../../capaDatos/modelos/empleadosDatosModelo');
 
-const ROLES_VALIDOS = ['ADMINISTRADOR', 'SUPERVISOR', 'PILOTO', 'OPERADOR_ESTACION'];
+const ROLES_VALIDOS = ['ADMINISTRADOR', 'SUPERVISOR', 'OPERADOR_ESTACION'];
 
 const obtenerTodos = async () => {
   return await usuarioDatos.listarUsuarios();

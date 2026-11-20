@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { operadorEstacionServicio } from '../servicios/operadorEstacionServicio';
-import './ModuloAdmin.css';
+import { operadorEstacionServicio } from '../../servicios/operadorEstacionServicio';
+import '../ModuloAdmin.css';
 
 export const OperadoresEstacion = () => {
   const [asignaciones, setAsignaciones] = useState([]);

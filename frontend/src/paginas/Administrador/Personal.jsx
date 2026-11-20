@@ -1,7 +1,7 @@
 
 import React from 'react';
-import CRUD from '../componentes/CRUD';
-import { empleadoServicio } from '../servicios/empleadoServicios';
+import CRUD from '../../componentes/CRUD';
+import { empleadoServicio } from '../../servicios/empleadoServicios';
 
 const TIPOS_PERSONAL = [
   { valor: 'PILOTO', etiqueta: 'Piloto' },

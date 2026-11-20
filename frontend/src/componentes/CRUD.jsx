@@ -58,7 +58,7 @@ const CRUD = ({
     if (guardando) return;
     setGuardando(true);
     
-    const exito = await ejecutarAccion(async () => {
+    await ejecutarAccion(async () => {
       if (editandoId !== null) {
         await servicio.actualizar(editandoId, formData);
       } else {
@@ -68,8 +68,7 @@ const CRUD = ({
       await cargarDatos();
     }, false);
 
-    if (!exito) setGuardando(false);
-    else setGuardando(false);
+    setGuardando(false);
   };
 
   const cambiarEstado = async (registro) => {
